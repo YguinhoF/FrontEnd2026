@@ -3,25 +3,32 @@
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  background-color: #121214;
+  background: linear-gradient(135deg, #000000, #1a0000);
   font-family: 'Roboto', sans-serif;
-  color: #e1e1e6;
+  color: #f5f5f5;
 }
 
 .card {
-  background-color: #202024;
+  background-color: #0f0f0f;
   padding: 2.5rem;
-  border-radius: 8px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
-  border: 1px solid #323238;
+  border-radius: 1.2rem;
+  box-shadow: 0 8px 32px rgba(255, 0, 0, 0.15);
+  border: 1px solid #2b0000;
   width: 100%;
   max-width: 400px;
   text-align: center;
 }
 
+.cardTitle {
+  margin-bottom: 1.5rem;
+  color: #ff3b3b;
+  font-size: 1.75rem;
+  font-weight: bold;
+}
+
 .card h2 {
   margin-bottom: 1.5rem;
-  color: #e1e1e6;
+  color: #ffffff;
   font-size: 1.75rem;
   font-weight: bold;
 }
@@ -41,48 +48,52 @@
 .inputGroup label {
   margin-bottom: 0.5rem;
   font-weight: 500;
-  color: #c4c4cc;
+  color: #c7c7c7;
   font-size: 0.875rem;
 }
 
 .inputGroup input {
   padding: 0.875rem;
-  background-color: #121214;
-  border: 1px solid #323238;
-  border-radius: 6px;
+  background-color: #161616;
+  border: 1px solid #3a0000;
+  border-radius: 0.8rem;
   font-size: 1rem;
-  color: #e1e1e6;
+  color: #ffffff;
   transition:
     border-color 0.2s,
-    box-shadow 0.2s;
+    box-shadow 0.2s,
+    background-color 0.2s;
 }
 
 .inputGroup input::placeholder {
-  color: #7c7c8a;
+  color: #7a7a7a;
 }
 
 .inputGroup input:focus {
   outline: none;
-  border-color: #576ce5;
-  box-shadow: 0 0 0 1px #576ce5;
+  border-color: #ff3b3b;
+  box-shadow: 0 0 0 2px rgba(255, 59, 59, 0.25);
+  background-color: #1d1d1d;
 }
 
 .button {
   padding: 1rem;
-  background-color: #576ce5;
-  color: white;
+  background: linear-gradient(135deg, #ff1f1f, #990000);
+  color: #ffffff;
   border: none;
-  border-radius: 6px;
+  border-radius: 0.8rem;
   font-size: 1rem;
   font-weight: bold;
   cursor: pointer;
-  transition: background-color 0.2s;
+  transition:
+    transform 0.2s,
+    opacity 0.2s;
   margin-top: 0.5rem;
 }
 
-/* AJUSTE 1: Cor mais clara ao passar o mouse */
 .button:hover {
-  background-color: #6687ff; 
+  opacity: 0.9;
+  transform: translateY(-2px);
 }
 
 .actions {
@@ -90,25 +101,45 @@
   flex-direction: column;
   gap: 0.75rem;
   margin-top: 1.5rem;
-  border-top: 1px solid #323238;
+  border-top: 1px solid #2b0000;
   padding-top: 1.5rem;
 }
 
 .linkButton {
   background: none;
   border: none;
-  color: #c4c4cc;
+  color: #c7c7c7;
   cursor: pointer;
   font-size: 0.875rem;
   transition: color 0.2s;
 }
 
 .linkButton:hover {
-  color: #e1e1e6;
+  color: #ff4d4d;
   text-decoration: underline;
 }
 
-/* AJUSTE 2: Classes de feedback (sucesso/erro antigas) foram removidas daqui pois usamos o Toastify agora */
+.feedback {
+  padding: 0.875rem;
+  border-radius: 0.8rem;
+  font-size: 0.875rem;
+  font-weight: bold;
+}
+
+.success {
+  background-color: #14532d;
+  color: #ffffff;
+}
+
+.error {
+  background-color: #7f1d1d;
+  color: #ffffff;
+}
+
+.info {
+  background-color: #262626;
+  color: #ffffff;
+}
 
 .passwordWrapper {
   position: relative;
@@ -129,7 +160,7 @@
   transform: translateY(-50%);
   background: transparent;
   border: none;
-  color: #576ce5;
+  color: #ff3b3b;
   font-size: 0.875rem;
   font-weight: 600;
   cursor: pointer;
@@ -138,5 +169,5 @@
 }
 
 .togglePasswordBtn:hover {
-  color: #6687ff;
+  color: #ff6666;
 }

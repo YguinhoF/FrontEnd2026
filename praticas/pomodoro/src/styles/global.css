@@ -21,23 +21,31 @@ body {
     'Open Sans',
     'Helvetica Neue',
     sans-serif;
-  font-size: 1.6rem; /* 16px */
+  font-size: 1.6rem;
   background: var(--gray-900);
   color: var(--text-default);
 }
 
 .form {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  flex-direction: column;
   gap: 2.4rem;
+
+  width: 100%;
+  max-width: 60rem;
+  margin: 0 auto;
+  padding: 2.4rem;
 }
 
 .formRow {
   display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
-  flex-direction: column;
   gap: 2.4rem;
+
+  width: 100%;
+  flex-wrap: wrap;
 }

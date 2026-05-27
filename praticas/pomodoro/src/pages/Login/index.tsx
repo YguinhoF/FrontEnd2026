@@ -2,33 +2,32 @@ import React, { useState, useContext, type FormEvent } from 'react';
 import { AuthContext } from '../../contexts/AuthContext/AuthContext';
 import styles from './styles.module.css';
 
-// 1. IMPORTAÇÃO DO TOAST AQUI
-import { toast } from 'react-toastify';
-
 type ViewMode = 'login' | 'register' | 'recover';
 
 export default function Login() {
   const { login } = useContext(AuthContext);
-  
+
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [feedback, setFeedback] = useState('');
   const [viewMode, setViewMode] = useState<ViewMode>('login');
+
+  // NOVO: Estado para controlar a visualização da senha
   const [showPassword, setShowPassword] = useState(false);
 
   const handleSubmit = (e: FormEvent) => {
-    e.preventDefault(); 
-    
+    e.preventDefault();
+
     const cleanUsername = username.trim().toLowerCase();
     const cleanPassword = password.trim();
 
     const success = login(cleanUsername, cleanPassword);
-    
+
     if (success) {
-      // 2. TOAST DE SUCESSO! (Substitui o alert)
-      toast.success('Bem-vindo(a) ao Chronos Pomodoro!'); 
+      !alert('Login realizado com sucesso.');
+      setFeedback('');
     } else {
-      // 3. TOAST DE ERRO! (Substitui o feedback antigo)
-      toast.error('Usuário ou senha incorretos.');
+      setFeedback('Usuário ou senha incorretos.');
     }
   };
 
@@ -37,10 +36,21 @@ export default function Login() {
       <div className={styles.container}>
         <div className={styles.card}>
           <h2>Criar uma conta</h2>
-          <p style={{ marginBottom: '1.5rem', color: '#c4c4cc', lineHeight: '1.5' }}>
-            A funcionalidade de cadastro (simulação) será implementada em breve.
+          <p
+            style={{
+              marginBottom: '1.5rem',
+              color: '#c4c4cc',
+              lineHeight: '1.5',
+            }}
+          >
+            Isso é apenas um protótipo.
           </p>
-          <button type="button" onClick={() => setViewMode('login')} className={styles.button} style={{ width: '100%' }}>
+          <button
+            type='button'
+            onClick={() => setViewMode('login')}
+            className={styles.button}
+            style={{ width: '100%' }}
+          >
             Voltar para o Login
           </button>
         </div>
@@ -53,10 +63,21 @@ export default function Login() {
       <div className={styles.container}>
         <div className={styles.card}>
           <h2>Recuperar senha</h2>
-          <p style={{ marginBottom: '1.5rem', color: '#c4c4cc', lineHeight: '1.5' }}>
-            A funcionalidade de recuperação de senha (simulação) será implementada em breve.
+          <p
+            style={{
+              marginBottom: '1.5rem',
+              color: '#c4c4cc',
+              lineHeight: '1.5',
+            }}
+          >
+            Isso é apenas um protótipo.
           </p>
-          <button type="button" onClick={() => setViewMode('login')} className={styles.button} style={{ width: '100%' }}>
+          <button
+            type='button'
+            onClick={() => setViewMode('login')}
+            className={styles.button}
+            style={{ width: '100%' }}
+          >
             Voltar para o Login
           </button>
         </div>
@@ -67,52 +88,71 @@ export default function Login() {
   return (
     <div className={styles.container}>
       <div className={styles.card}>
-        <h2>Acessar Chronos</h2>
-        
+        <div className={styles.cardTitle}>Pomodoro IESB</div>
+
         <form onSubmit={handleSubmit} className={styles.form}>
           <div className={styles.inputGroup}>
-            <label htmlFor="username">Usuário</label>
-            <input 
-              id="username"
-              type="text" 
+            <label htmlFor='username'>Usuário</label>
+            <input
+              id='username'
+              type='text'
               value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              placeholder="Ex: admin"
+              onChange={e => setUsername(e.target.value)}
+              placeholder='ygor'
               required
             />
           </div>
 
           <div className={styles.inputGroup}>
-            <label htmlFor="password">Senha</label>
+            <label htmlFor='password'>Senha</label>
+
             <div className={styles.passwordWrapper}>
-              <input 
-                id="password"
-                type={showPassword ? "text" : "password"} 
+              <input
+                id='password'
+                // A MÁGICA: Se showPassword for true, vira texto. Se false, vira bolinhas.
+                type={showPassword ? 'text' : 'password'}
                 value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="Ex: 1234"
+                onChange={e => setPassword(e.target.value)}
+                placeholder='1234'
                 required
               />
-              <button 
-                type="button"
+              <button
+                type='button'
                 className={styles.togglePasswordBtn}
                 onClick={() => setShowPassword(!showPassword)}
               >
-                {showPassword ? "Ocultar" : "Mostrar"}
+                {showPassword ? 'Ocultar' : 'Revelar'}
               </button>
             </div>
           </div>
 
-          <button type="submit" className={styles.button}>
+          <button type='submit' className={styles.button}>
             Entrar
           </button>
         </form>
 
+        {feedback && (
+          <div
+            className={`${styles.feedback} ${styles.error}`}
+            style={{ marginTop: '1rem' }}
+          >
+            {feedback}
+          </div>
+        )}
+
         <div className={styles.actions}>
-          <button type="button" className={styles.linkButton} onClick={() => setViewMode('recover')}>
+          <button
+            type='button'
+            className={styles.linkButton}
+            onClick={() => setViewMode('recover')}
+          >
             Esqueci minha senha
           </button>
-          <button type="button" className={styles.linkButton} onClick={() => setViewMode('register')}>
+          <button
+            type='button'
+            className={styles.linkButton}
+            onClick={() => setViewMode('register')}
+          >
             Criar uma conta
           </button>
         </div>

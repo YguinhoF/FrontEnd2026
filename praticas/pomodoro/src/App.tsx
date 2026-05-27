@@ -8,25 +8,18 @@ import './styles/global.css';
 import { AuthContext } from './contexts/AuthContext/AuthContext';
 import Login from './pages/Login/index'; 
 
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
 export function App() {
   const { isAuthenticated } = useContext(AuthContext);
 
-  return (
-    <>
-      <ToastContainer position="top-right" autoClose={3000} />
+  if (!isAuthenticated) {
+    return <Login />;
+  }
 
-      {!isAuthenticated ? (
-        <Login />
-      ) : (
-        <TaskContextProvider>
-          <MessagesContainer>
-            <MainRouter />
-          </MessagesContainer>
-        </TaskContextProvider>
-      )}
-    </>
+  return (
+    <TaskContextProvider>
+      <MessagesContainer>
+        <MainRouter />
+      </MessagesContainer>
+    </TaskContextProvider>
   );
 }
